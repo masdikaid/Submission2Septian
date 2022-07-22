@@ -22,8 +22,11 @@ class GithubUserActivity : AppCompatActivity() {
 
     private var _binding: ActivityGithubUserBinding? = null
     private val binding get() = _binding!!
-    private var listGithubUser = ArrayList<GithubUser>()
     private val helper = Helper()
+
+    private val listUser = ArrayList<GithubUser>()
+    private lateinit var adapter: SearchAdapter
+
 
 
 
@@ -32,6 +35,10 @@ class GithubUserActivity : AppCompatActivity() {
         _binding = ActivityGithubUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        adapter = SearchAdapter(listUser)
+        val layoutManager = LinearLayoutManager(this@GithubUserActivity)
+        binding.rvUser.layoutManager = layoutManager
+        binding.rvUser.adapter = adapter
 
         val userViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
             .get(UserViewModel::class.java)
@@ -39,17 +46,14 @@ class GithubUserActivity : AppCompatActivity() {
         userViewModel.listGithubUser.observe(this) { listGithubUser ->
             setUserData(listGithubUser)
         }
-
+//
         userViewModel.isLoading.observe(this) {
             helper.showLoading(it, binding.progressBar)
         }
-
+//
         userViewModel.totalCount.observe(this) {
             showText(it)
         }
-
-        val layoutManager = LinearLayoutManager(this@GithubUserActivity)
-        binding.rvUser.layoutManager = layoutManager
     }
 
 
@@ -72,9 +76,7 @@ class GithubUserActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
-                    binding.rvUser.visibility = View.VISIBLE
                     userViewModel.searchGithubUser(it)
-                    setUserData(listGithubUser)
                 }
                 hideKeyboard()
                 return true
@@ -90,14 +92,9 @@ class GithubUserActivity : AppCompatActivity() {
 //    fungsi untuk set data dari API ke Tampilan UI
 
     private fun setUserData(listGithubUser: List<GithubUser>){
-        val listUser = ArrayList<GithubUser>()
-        for (user in listGithubUser){
-            listUser.clear()
-            listUser.addAll(listGithubUser)
-        }
-
-        val adapter = SearchAdapter(listUser)
-        binding.rvUser.adapter = adapter
+        listUser.clear()
+        listUser.addAll(listGithubUser)
+        adapter.notifyDataSetChanged()
 
         adapter.setOnItemClickCallback(object : SearchAdapter.OnItemClickCallback{
             override fun onItemClicked(data: GithubUser){

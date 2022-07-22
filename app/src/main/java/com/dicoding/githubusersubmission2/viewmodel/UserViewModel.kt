@@ -16,7 +16,7 @@ class UserViewModel: ViewModel() {
     private val _listGithubUser = MutableLiveData<List<GithubUser>>()
     val listGithubUser: LiveData<List<GithubUser>> = _listGithubUser
 
-    private val _isLoading = MutableLiveData<Boolean>()
+    private val _isLoading = MutableLiveData<Boolean>(false)
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _totalCount = MutableLiveData<Int>()
