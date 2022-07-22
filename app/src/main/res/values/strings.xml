@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Github Users</string>
+    <string name="tvName">Nama</string>
+    <string name="tvUsername">Username</string>
+    <string name="search_hint">Ketikan Username</string>
+    <string name="search">search</string>
+    <string name="foto_user">foto user</string>
+    <string name="tvDetNama">Detail  Nama</string>
+    <string name="tvDetUsername">Detail Username</string>
+    <string name="tvDetCompany">Detail Company</string>
+    <string name="tvDetLocation">Detail Location</string>
+    <string name="lblRepository">Repository</string>
+    <string name="Repository">Repository</string>
+    <string name="tab_following_dan_followers">Following dan Followers</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="followers_title">followers title</string>
+    <string name="following_title">following title</string>
+    <string name="searchh">Search</string>
+    <string name="search_guide">Anda dapat mencari pada menu search</string>
+    <string name="user_not_found">Pengguna Tidak Ditemukan</string>
+
+    <string-array name="tab_title">
+        <item>@string/followers_title</item>
+        <item>@string/following_title</item>
+    </string-array>
+</resources>
