@@ -1,5 +1,6 @@
 package com.dicoding.githubusersubmission2.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -23,17 +24,17 @@ class SearchAdapter(private val listUser: List<GithubUser>): RecyclerView.Adapte
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user = listUser[position]
 
-     with(holder.binding){
-         Glide.with(root.context)
-             .load(user.avatarUrl)
-             .circleCrop()
-             .into(imgUser)
-         tvName.text = user.login
+        with(holder.binding){
+             Glide.with(root.context)
+                 .load(user.avatarUrl)
+                 .circleCrop()
+                 .into(imgUser)
+             tvName.text = user.login
 
-         root.setOnClickListener{
-             onItemClickCallback.onItemClicked(listUser[position])
-         }
-     }
+             root.setOnClickListener{
+                 onItemClickCallback.onItemClicked(listUser[position])
+             }
+        }
 
     }
 

@@ -6,26 +6,26 @@ import retrofit2.http.*
 
 interface ApiService {
 
-    @GET("search/users{username}")
-    @Headers("Authorization: token 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")
+    @GET("search/users")
+    @Headers("Authorization: token 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")
             fun searchUser(
-                @Query("q") login: String
+                @Query("q") username: String
             ): Call<UserResponse>
 
             @GET("users/{login}")
-            @Headers("Authorization: token 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")
+            @Headers("Authorization: token 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")
             fun getUserDetail(
                 @Path("login") login: String
             ): Call<DetailResponse>
 
             @GET("users/{login}/following")
-            @Headers("Authorization: token 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")
+            @Headers("Authorization: token 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")
             fun getUserFollowing(
                 @Path("login") login: String
             ): Call<List<GithubUser>>
 
             @GET("users/{username}/followers")
-            @Headers("Authorization: token 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")
+            @Headers("Authorization: token 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")
             fun getUserFollowers(
                 @Path("login") login: String
             ): Call<List<GithubUser>>
